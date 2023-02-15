@@ -1,1 +1,1 @@
-[alt  alt  tab  tab  alt  shift  shift  s  t  s  t  a  r  a  r  t  t  ctrl  p  p  ctrl  left  left  enter  enter  enter  enter  enter  enter  enter  enter  enter  enter  alt  tab  tab  alt  ` ]
+[ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  ctrl  j  d  j  d  d  d  j  j  d  d  k  k  d  d  j  j  d  d  j  j  d  d  j  j  d  d  ` ]
