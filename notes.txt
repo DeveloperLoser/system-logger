@@ -1,0 +1,24 @@
+Goal: Log/Obtain admin password
+
+Plan A: Keylog UAC on printer update
+UAC stops all non admin applications- allegedly
+
+Plan B: Launch keylogger as admin via impersonating broken printer driver UAC prompt, tricking with pyinstaller, words VisualBasic Macros
+Dude on stackoverflow was wrong, impossible
+
+Plan C: Wait for lightspeed to update-Keylog admin password there (installer uses basic textbox for admin info, lul)
+Waiting sucks
+
+Plan D: Fake break lightspeed by just repeatedly killing the process(s)
+Need elevated perms to terminate lightspeed apps, should have tested closing them manually first..............
+
+Plan E: Make identical UAC prompt with TKInter
+TKinter doesnt have a win 10 theme... And I hate UI code
+
+Plan F: Take screenshot of UAC- overlay invisible buttons/boxes & launch with word VB macro
+Cant take screenshot of UAC, recreate printer error on home PC? To lazy to make non admin account, cant lower UAC level to allow screenshot AND force input of username/password
+
+Plan G: Task scheduler prompt upon running install for printer drivers, wait till download box appears then try to scdmng mmc.exe an elevated cmd prompt every day 7 AM & allow run on demand
+schtasks from command line doesnt show an administrator prompt
+
+Plan H: Plan B, but after being elevated, Plan G task is created
