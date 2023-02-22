@@ -3,7 +3,7 @@ Goal: Log/Obtain admin password/access
 Plan A: Keylog UAC on printer update
 UAC stops all non admin applications- allegedly
 
-Plan B: Launch keylogger as admin via impersonating broken printer driver UAC prompt, tricking with pyinstaller, words VisualBasic Macros
+Plan B: Launch keylogger as admin via impersonating broken printer driver elevation prompt, tricking with pyinstaller, words VisualBasic Macros
 Dude on stackoverflow was wrong, impossible
 
 Plan C: Wait for lightspeed to update-Keylog admin password there (installer uses basic textbox for admin info, lul)
@@ -23,13 +23,18 @@ schtasks from command line doesnt show an administrator prompt
 
 Plan H: Plan B, but after being elevated, Plan G task is created
 Tried it without testing, they started to enter info into the real but fake prompt but got spooked by it being unverified, logged into own account and fixed printer bug, fuck
-VB Macro couldve been better, it was running on the old short timer so it opened itself before he clicked on it, also spooked him
+VB Macro couldve been better, it was running on the old short timer so it opened itself before he clicked on it, that also spooked him
 
-Plan I: Fake installer/updater for something like Li-Clipse, Plan G without printer stuff
+Plan I1: Fake installer/updater for something like Li-Clipse, Plan G without printer stuff
+LiClipse install link is blocked by the filter, put it on a USB stick later?
+
+Plan I2: Vexcode Pro installer needs admin, whatever printer stuff I was doing but that instead, ALSO, launch vexcode installer with the script, so that it doesnt ask for admin twice. Installer is verified, buuuuuut maybeeee?
 
 TODO:
+Test new build
 
 Ideas:
 Look at ways of recreating printer bug, looks like he changed the default printer or its IP
 Theres a post-it with 2 username/password combos marked HS above back desk, get picture?
 Lots of potential with schtasks, fake bugs, etc.
+Password wasnt entered for lightspeed installer- but it(lightspeed apps) request one outside of UAC. Disassemble installer? Or is it just getting it over the net (wireshark)
