@@ -28,13 +28,19 @@ VB Macro couldve been better, it was running on the old short timer so it opened
 Plan I1: Fake installer/updater for something like Li-Clipse, Plan G without printer stuff
 LiClipse install link is blocked by the filter, put it on a USB stick later?
 
-Plan I2: Vexcode Pro installer needs admin, whatever printer stuff I was doing but that instead, ALSO, launch vexcode installer with the script, so that it doesnt ask for admin twice. Installer is verified, buuuuuut maybeeee?
+Plan I2: Vexcode Pro installer needs admin, whatever printer stuff I was doing but that instead, ALSO, launch vexcode installer with the script, so that it doesnt ask for admin twice. Installer is verified, and this is not, buuuuuut maybeeee?
+
 
 TODO:
-Test new build
+Change the Trigger for the task
+Make sure windows defender will only nuke it after its run, and make sure notifications are turned off to block it from displaying
 
 Ideas:
 Look at ways of recreating printer bug, looks like he changed the default printer or its IP
 Theres a post-it with 2 username/password combos marked HS above back desk, get picture?
 Lots of potential with schtasks, fake bugs, etc.
 Password wasnt entered for lightspeed installer- but it(lightspeed apps) request one outside of UAC. Disassemble installer? Or is it just getting it over the net (wireshark)
+
+Notes:
+Plan I2 works on local, and to great effect. Needs to be bundled into one EXE to work, so that the elevated key is properly given to task and real_installer, and they are run elevated
+Funny thing is, it works to well. Windows defender detects the exe as a virus and quarantines it, but AFTER it makes the task; side effect is that ID 15 is sent, and elevated prompt instantly opens
