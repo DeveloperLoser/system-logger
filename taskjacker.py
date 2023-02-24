@@ -6,7 +6,7 @@ task = "schtasks /create /TN PrinterDriverUpdater /XML C:/Users/lhill23/Document
 #Hijacking task scheduler, kinda?
 def Hijack():
     run(task)
-    system("cd C:/Users/luhil/Documents & VEXcodeV5-20220829.exe")
+    system("cd C:/Users/lhill23/Desktop & VEXcodeV5-20220228.exe")
 
 if __name__ == "__main__":
     Hijack()
