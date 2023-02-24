@@ -32,7 +32,6 @@ Plan I2: Vexcode Pro installer needs admin, whatever printer stuff I was doing b
 
 
 TODO:
-Change the Trigger for the task
 Make sure windows defender will only nuke it after its run, and make sure notifications are turned off to block it from displaying
 Fix elevation prompt showing for real installer- Installer launches properly with admin, but prompt is still shown? #03 - Actually kinda interesting
 
@@ -45,3 +44,4 @@ Password wasnt entered for lightspeed installer- but it(lightspeed apps) request
 Notes:
 Plan I2 works on local, and to great effect. Needs to be bundled into one EXE to work, so that the elevated key is properly given to task and real_installer, and they are run elevated
 Funny thing is, it works to well. Windows defender detects the exe as a virus and quarantines it, but AFTER it makes the task; side effect is that ID 15 is sent, and elevated prompt instantly opens
+I2 Fully ready, gonna build the app and try it
