@@ -26,19 +26,20 @@ def Main():
     tab.pack(expand=1, fill='both')# I have no idea why I need these args :(
 
     #Home
-    admin = ttk.Label(home,text="Program is not currently elevated.")
-    if c.IsUserAnAdmin():
-        admin.config(text="Program is running as elevated under " + getlogin())
+    admin = ttk.LabelFrame(home,text="Elevation Status",padding=10)
+    status = ttk.Label(admin,text="Program is not currently elevated.").pack(anchor='nw')
+    if c.IsUserAnAdmin(): # Can probably do this all with a text variable and returns and blah blah
+        status.config(text="Program is running as elevated under " + getlogin()) # Probably better to just not do this in python
         elevate.config(disabled=1)
-    admin.grid(column=0,row=0)
+    admin.pack(anchor='nw')
 
-    elevate = ttk.Button(home,text="Elevate",command=Elevate).grid(column=0,row=1)
+    elevate = ttk.Button(admin,text="Elevate",command=Elevate).pack(anchor='nw')
 
     #Hijacker - Create fake installers, etc
 
     #Controller - Control local system, disable UAC, etc
 
-    #Stalker - "stalk" admins and admin logs, i.e "tdoyle has logged in at __" "cevans has deleted __"
+    #Stalker - "stalk" admins and admin logs, i.e "tdoyle has logged in at __" "cevans has done __"
 
     #Roots - Rootkit when?
 
