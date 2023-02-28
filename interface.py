@@ -34,9 +34,13 @@ def Main():
 
     elevate = ttk.Button(home,text="Elevate",command=Elevate).grid(column=0,row=1)
 
-    #Hijacker
+    #Hijacker - Create fake installers, etc
 
-    #Controller
+    #Controller - Control local system, disable UAC, etc
+
+    #Stalker - "stalk" admins and admin logs, i.e "tdoyle has logged in at __" "cevans has deleted __"
+
+    #Roots - Rootkit when?
 
     root.mainloop()
 
