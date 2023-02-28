@@ -68,7 +68,7 @@ Plan I2: Vexcode Pro installer needs admin, whatever printer stuff I was doing b
     making my own event/event id that gets triggered with something in cmd, or even
     make a hackermanz'y console. Learn more abt windows events and UI code
 
-Plan J: Use above method to first set UAC settings to minimum; so that keylogger can run and capture input into the prompt (maybe?)
+Plan J: Use above method to first set UAC settings to minimum and open a delayed command prompt
 
 
 TODO:
@@ -76,6 +76,7 @@ TODO:
     with admin, but prompt is still shown? #03 - Actually kinda interesting
 ~Add a flashy UI
 ~Dynamic file paths
+~Better understand lightspeed system - Make some sort of toggle switch?
 
 Other ideas:
 ~Look at ways of recreating printer bug, looks like he changed the default
@@ -108,6 +109,7 @@ Notes:
     research I have to do into access tokens. Anyways the result is a "glitch"? 
     that prevents elevation through task scheduler in the way im trying to do it. 
     I think.
+~I already disabled IEFI BIOS
 
 Accounts to remember:
 Candy Evans - Admin0 ~ Forest admin? Three more of these "admin0" accounts exist
