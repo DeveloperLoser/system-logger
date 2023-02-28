@@ -26,7 +26,9 @@ Plan E: Make identical UAC prompt with TKInter
 Plan F: Take screenshot of UAC- overlay invisible buttons/boxes & launch with
     word VB macro
 
-    -Cant take screenshot of UAC, recreate printer error on home PC? To lazy to make non admin account, cant lower UAC level to allow screenshot AND force input of username/password
+    -Cant take screenshot of UAC, recreate printer error on home PC? 
+    To lazy to make non admin account, cant lower UAC level to allow screenshot AND 
+    force input of username/password
 
 Plan G: Task scheduler prompt upon running install for printer drivers, 
     wait till download box appears then try to scdmng mmc.exe an elevated cmd 
@@ -66,12 +68,14 @@ Plan I2: Vexcode Pro installer needs admin, whatever printer stuff I was doing b
     making my own event/event id that gets triggered with something in cmd, or even
     make a hackermanz'y console. Learn more abt windows events and UI code
 
-Plan J: above but with ________
+Plan J: Use above method to first set UAC settings to minimum; so that keylogger can run and capture input into the prompt (maybe?)
 
 
 TODO:
-Fix elevation prompt showing for real installer- Installer launches properly 
+~Fix elevation prompt showing for real installer- Installer launches properly 
     with admin, but prompt is still shown? #03 - Actually kinda interesting
+~Add a flashy UI
+~Dynamic file paths
 
 Other ideas:
 ~Look at ways of recreating printer bug, looks like he changed the default
@@ -80,8 +84,12 @@ Other ideas:
     get a picture?
 ~Lots of potential with schtasks, fake bugs, etc.
 ~Password wasnt entered for lightspeed installer- but it(lightspeed apps) request 
-    one outside of UAC. Disassemble installer? 
-    Or is it just getting it over the net (wireshark).
+    one outside of UAC. Disassemble installer? Or is it just getting it over the net (wireshark).
+~Set UAC to minimum using existing methods, then keylog. This requires 2 prompts, and policy might forbid it
+~Wait a period after script is elevated, then launch cmd.exe since it seems that after being elevated, 
+    programs run out of the elevated users directory (i.e tdoyle) theoretically making HighestAvailable
+    their admin priveleges. Then create a local admin account of my own, and turn off event log's network connection
+~Local admin account can have password changed, have it changed to null or 123456?
 
 Notes:
 ~Plan I2 works on local, and to great effect. 
@@ -91,7 +99,7 @@ Notes:
     Windows defender detects the exe as a virus and quarantines it, 
     but AFTER it makes the task; 
     Side effect is that ID 15 is sent, and elevated prompt instantly opens
-~I'm starting to think what im trying to do isnt possible. It seems that when setting-
+~I'm starting to think what im trying to do with Task Scheduler isnt possible. It seems that when setting-
     the task to run as a certain account, and specifying HighestAvailable priority,
     its the highest available on the account its running from. Issue is, when
     specifying a diffrent account than local, a win7(I think?) style UAC elevation
@@ -100,3 +108,16 @@ Notes:
     research I have to do into access tokens. Anyways the result is a "glitch"? 
     that prevents elevation through task scheduler in the way im trying to do it. 
     I think.
+
+Accounts to remember:
+Candy Evans - Admin0 ~ Forest admin? Three more of these "admin0" accounts exist
+Candy Evans - Admin1
+Candy Evans - Admin2
+Dovahkiin Dragonborn ~ Love this guy (Also did marvel characters at charlestown?)
+Steve Rodgers ~ 333333@student.gvsd.org, password 333333? Murica'
+gvimage gvimage ~ Default image for vmware, etc?
+GVSD LDAP Query Account
+LDAP Query
+WiFi Phones ~ Lots of fun
+Willistown Township ~ Nope, not fucking with da po-lease(?)
+Charles Patriot ~ Ah yes, very subtle test account . Or is it? Pivot.
