@@ -2,7 +2,7 @@
 import tkinter
 from tkinter import *
 from tkinter import ttk, filedialog #.ttk and tkinter widgets are diffrent, headache
-import Jacker, LightspeedOff, poisonRecipe
+import Jacker, LightspeedOff
 from ctypes import windll
 from sys import executable, argv
 from os import getlogin
