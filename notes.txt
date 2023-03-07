@@ -110,6 +110,13 @@ Notes:
     that prevents elevation through task scheduler in the way im trying to do it. 
     I think.
 ~I already disabled IEFI BIOS
+~Devices have a RAT built in, average school.
+    Lightspeed Management Agent has a "Desktop Viewer.exe", only one guess what that does.
+    It and other lightspeed aspects are managed by "Mobile Manager".
+    It runs in its own EXE. TODO: Add automated scheduler alert when it opens/starts running; and find out when/what
+    calls it to open.
+    Lightspeed also installs sys drivers and a security catalog
+    Also "level=info msg="[pacServer] Listening on HTTP -> 127.0.0.1:6544""
 
 Accounts to remember:
 Candy Evans - Admin0 ~ Forest admin? Three more of these "admin0" accounts exist

