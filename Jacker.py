@@ -69,6 +69,11 @@ def Log():
     r = r.replace("up)", '\'')
     output.write(r)
 
+def OpenConsole():
+    #Open a console as the authorizing account
+    sleep(900)# 15 minutes
+    system("cmd runas")
+
 #Drivers?
 
 if __name__ == "__main__":
